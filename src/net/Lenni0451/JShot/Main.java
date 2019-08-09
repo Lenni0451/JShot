@@ -5,8 +5,9 @@ import javax.swing.JOptionPane;
 public class Main {
 	
 	public static void main(String[] args) {
-		Config config = new Config();
+		Config config;
 		try {
+			config = new Config();
 			config.loadConfig();
 		} catch (Throwable e) {
 			JOptionPane.showMessageDialog(null, "Could not load config file!", "JShot", JOptionPane.ERROR_MESSAGE);

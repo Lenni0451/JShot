@@ -16,9 +16,12 @@ public class Config {
 	private final File configFile;
 	private final Map<String, String> configValues;
 	
-	public Config() {
+	public Config() throws IOException {
 		this.configFile = new File(System.getProperty("user.home"), "jshot.cfg");
 		this.configValues = new HashMap<>();
+		
+		this.configFile.getParentFile().mkdirs();
+		this.configFile.createNewFile();
 	}
 	
 	public File getConfigFile() {
