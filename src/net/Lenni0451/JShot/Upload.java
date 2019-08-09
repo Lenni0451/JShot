@@ -62,7 +62,7 @@ public class Upload {
 			        	clipboard.setContents(sel, sel);
 			        } else {
 			        	System.out.println(line);
-						JOptionPane.showMessageDialog(null, "The upload could not be finished!", "JShot", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "The image could not be uploaded!Site message: \n" + line, "JShot", JOptionPane.ERROR_MESSAGE);
 			        }
 			        
 			        con.disconnect();
@@ -72,7 +72,7 @@ public class Upload {
 			}
 		} catch (Throwable e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "An error occurred whilst uploading the file!", "JShot", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "An error occurred whilst uploading the file!\nPlease try again using a console to see the occurred exception and report it on github.", "JShot", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
