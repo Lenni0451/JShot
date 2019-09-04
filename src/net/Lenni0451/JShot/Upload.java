@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 public class Upload {
 	
 	private final Config config;
+	private boolean first = true;
 	
 	public Upload(final Config config) {
 		this.config = config;
@@ -68,7 +69,22 @@ public class Upload {
 			        con.disconnect();
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "No image in the clipboard found!", "JShot", JOptionPane.INFORMATION_MESSAGE);
+				if(!this.first || this.config.getValue("StartSnippingTool").equalsIgnoreCase("false")) {
+					JOptionPane.showMessageDialog(null, "No image in the clipboard found!", "JShot", JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
+				this.first = false;
+				
+				Process process = Runtime.getRuntime().exec(System.getenv("SystemRoot") + "\\explorer.exe ms-screenclip:");
+				while(process.isAlive()) {
+					try {
+						Thread.sleep(100);
+					} catch (Throwable e) {}
+				}
+				try {
+					Thread.sleep(2000);
+				} catch (Throwable e) {}
+				this.pushFile();
 			}
 		} catch (Throwable e) {
 			e.printStackTrace();

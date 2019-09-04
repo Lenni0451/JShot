@@ -55,7 +55,7 @@ public class Config {
 	}
 	
 	public boolean isSetUp() {
-		return this.configValues.containsKey("url") && this.configValues.containsKey("security-token");
+		return this.configValues.containsKey("url") && this.configValues.containsKey("security-token") && this.configValues.containsKey("StartSnippingTool");
 	}
 	
 	public String addValue(final String key, final String value) {

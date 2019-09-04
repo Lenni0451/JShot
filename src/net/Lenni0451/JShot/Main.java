@@ -15,6 +15,10 @@ public class Main {
 		}
 		
 		if(args.length == 0) {
+			if(!config.isSetUp()) {
+				JOptionPane.showMessageDialog(null, "Your config is not set up. Please run 'JShot.jar setup'");
+				return;
+			}
 			Upload upload = new Upload(config);
 			upload.pushFile();
 		} else if(args.length == 1 && args[0].equalsIgnoreCase("setup")) {

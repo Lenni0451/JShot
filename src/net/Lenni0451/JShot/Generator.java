@@ -65,6 +65,10 @@ public class Generator {
 			String url = s.nextLine();
 			this.config.addValue("url", url);
 			
+			System.out.print("Do you want to start SnippingTool automatically if you don't have a screenshot in your Clipboard? [YES/no]: ");
+			String line = s.nextLine();
+			this.config.addValue("StartSnippingTool", String.valueOf(line.equalsIgnoreCase("YES") || line.equalsIgnoreCase("y")));
+			
 			try {
 				this.config.saveConfig();
 				System.out.println("Successfully created config file! You are now able to use JShot!");
