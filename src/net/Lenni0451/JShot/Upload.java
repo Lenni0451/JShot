@@ -75,16 +75,7 @@ public class Upload {
 				}
 				this.first = false;
 				
-				Process process = Runtime.getRuntime().exec(System.getenv("SystemRoot") + "\\explorer.exe ms-screenclip:");
-				while(process.isAlive()) {
-					try {
-						Thread.sleep(100);
-					} catch (Throwable e) {}
-				}
-				try {
-					Thread.sleep(2000);
-				} catch (Throwable e) {}
-				this.pushFile();
+				Runtime.getRuntime().exec(System.getenv("SystemRoot") + "\\explorer.exe ms-screenclip:");
 			}
 		} catch (Throwable e) {
 			e.printStackTrace();
