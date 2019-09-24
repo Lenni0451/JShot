@@ -1,8 +1,16 @@
 package net.Lenni0451.JShot;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.Transferable;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
-public class Main {
+public class Main implements ClipboardOwner {
 	
 	public static void main(String[] args) {
 		Config config;
@@ -32,6 +40,17 @@ public class Main {
 			} catch (Throwable e) {
 				System.out.println("Could not clear config file! Please check if you have permissions to write to this location.");
 			}
+		} else if(args.length == 1 && new File(args[0]).isFile()) {
+			try {
+				File in = new File(args[0]);
+				BufferedImage image = ImageIO.read(in);
+				Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+				TransferableImage img = new TransferableImage(image);
+				clipboard.setContents(img, new Main());
+			} catch (Throwable e) {
+				e.printStackTrace();
+			}
+			Main.main(new String[] {});
 		} else {
 			System.out.println("Invalid arguments!");
 			System.out.println("Use no argument to upload.");
@@ -39,5 +58,8 @@ public class Main {
 			System.out.println("Use 'JShot.jar clear' to reset the config file.");
 		}
 	}
+
+	@Override
+	public void lostOwnership(Clipboard clipboard, Transferable contents) {}
 	
 }
