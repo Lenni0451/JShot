@@ -49,6 +49,8 @@ public class Main implements ClipboardOwner {
 				clipboard.setContents(img, new Main());
 			} catch (Throwable e) {
 				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Could not read the file to clipboard!", "JShot", JOptionPane.ERROR_MESSAGE);
+				return;
 			}
 			Main.main(new String[] {});
 		} else {
